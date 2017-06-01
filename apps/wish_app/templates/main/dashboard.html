@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'main/css/styles.css' %}">
+    <title>Dashboard</title>
+</head>
+<body>
+<h1>Hello, {{ user.name }}, {{ user.date_hired }} </h1>
+<p><a href="/logout"> || Logout</a></p>
+
+
+<table>
+    <tr>
+        <th>Item</th>
+        <th>Added by</th>
+        <th>Data Added</th>
+        <th>Action</th>
+    </tr>
+    {% for product in my_products %}
+    <tr>
+        <td><a href="/wish_items/{{ product.id }}">{{ product.name }}</a></td>
+        <td>{{ product.created_by.name }}</td>
+        <td> {{ product.created_at }}</td>
+        {% if product.created_by.id == request.session.current_user %}
+        <td><a href="/delete/{{ product.id }} ">Delete</a></td>
+        {% else %}
+        <td><a href="/remove/{{ product.id }} ">Remove</a></td>
+        {% endif %}
+    </tr>
+    {% endfor %}
+</table>
+
+<table>
+    <tr>
+        <th>Item</th>
+        <th>Added by</th>
+        <th>Data Added</th>
+        <th>Action</th>
+    </tr>
+    {% for product in products %}
+    <tr>
+        <td><a href="/wish_items/{{ product.id }}">{{ product.name }}</a></td>
+        <td>{{ product.created_by.name }}</td>
+        <td> {{ product.created_at }}</td>
+        <td><a href="/add/{{ product.id }}">Add</a></td>
+    </tr>
+    {% endfor %}
+</table>
+
+<a href="/create">Create item</a>
+</body>
+</html>

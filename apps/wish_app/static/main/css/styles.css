@@ -1,0 +1,13 @@
+#registration, #login{
+    width:300px;
+    background-color:lightblue;
+    border: 2px solid black;
+    display:inline-block;
+    vertical-align:top;
+    padding: 5px;
+    margin:5px;
+}
+
+table, th, td {
+    border: 1px solid black;
+}
